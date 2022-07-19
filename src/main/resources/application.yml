@@ -1,0 +1,9 @@
+spring:
+  redis:
+    port: 6379
+    host: localhost
+    database: 0
+    password:
+    timeout: PT5S
+server:
+  port: 8081
