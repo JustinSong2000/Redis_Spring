@@ -2,8 +2,19 @@ spring:
   redis:
     port: 6379
     host: localhost
-    database: 0
+    database: 1
     password:
     timeout: PT5S
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    template:
+      exchange: Exchange1
+      routing-key: key1
+      # 30秒
+      receive-timeout: 30000
+
 server:
   port: 8081

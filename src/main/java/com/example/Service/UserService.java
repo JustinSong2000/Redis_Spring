@@ -9,4 +9,6 @@ public interface UserService {
     void addUser(User user);
     List<User> showAll();
 //    Boolean check_u(User user);
+    void sendUser(User user);
+
 }
