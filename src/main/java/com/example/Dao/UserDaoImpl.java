@@ -10,12 +10,12 @@ import java.util.List;
 @Component
 public class UserDaoImpl implements UserDao{
     @Resource
-    private RedisTemplate<Integer, String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
     public String get(int id){
         return (String) redisTemplate.opsForValue().get(id);
     }
     public void set(User u){
-        redisTemplate.opsForValue().set(u.getId(), u.getName());
+        redisTemplate.opsForValue().set(u.getId().toString(), u.getName());
     }
 
     @Override

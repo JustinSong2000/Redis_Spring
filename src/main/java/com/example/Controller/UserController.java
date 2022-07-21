@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 @RestController
 @Data
 @RequestMapping(value = "/")
@@ -26,9 +28,16 @@ public class UserController {
     public String getUser(@PathVariable int id){
         return us.getUserInfo(id);
     }
-    @GetMapping(value = "send/{id}/{name}")
-    public void  sendUser(@PathVariable int id, @PathVariable String name){
-        us.sendUser(new User(id, name));
+    @GetMapping(value = "send/{id}/{name}/{type}")
+    public void  sendUser(@PathVariable int id, @PathVariable String name, @PathVariable String type){
+        us.sendUser(new User(id, name), type);
 //        us.receiveUser();
+    }
+    @GetMapping(value = "monitor")
+    public void create(){
+        for(int i = 0; i < 5000; i ++){
+            Random r = new Random();
+            us.sendUser(new User(r.nextInt(), "name" + r), "b");
+        }
     }
 }

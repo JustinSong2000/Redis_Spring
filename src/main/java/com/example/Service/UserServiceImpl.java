@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
     public List<User> showAll(){
         return ud.showAll();
     }
-    public void sendUser(User user){
-        rabbitSend.sendUser(user);
+    public void sendUser(User user, String type){
+        rabbitSend.sendUser(user, type);
     }
 
 }

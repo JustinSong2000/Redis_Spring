@@ -16,6 +16,6 @@ public class RabbitUserReceiverImpl implements RabbitUserReceiver{
     @Override
     public void receiveUser(String user) {
         JSONObject jsonUser =  (JSONObject) JSON.parse(user);;
-        ud.set(new User((int)jsonUser.get("id"), (String) jsonUser.get("name")));
+        ud.set(new User((Integer) jsonUser.get("id"), (String) jsonUser.get("name")));
     }
 }

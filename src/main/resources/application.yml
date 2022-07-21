@@ -11,8 +11,9 @@ spring:
     username: guest
     password: guest
     template:
+      # 默认的交换机和路由
       exchange: Exchange1
-      routing-key: key1
+      routing-key: key
       # 30秒
       receive-timeout: 30000
 

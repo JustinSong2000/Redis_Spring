@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.Model.User;
 import lombok.Data;
 import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;
@@ -24,7 +25,20 @@ public class RabbitmqServiceImpl implements RabbitmqSendService{
     }
 
     @Override
-    public void sendUser(User u) {
-        rabbit.convertAndSend("Exchange1", "key1", JSON.toJSONString(u));
+    public void sendUser(User u, String type) {
+        switch (type){
+            case "d":
+                rabbit.convertAndSend("Exchange1", "key", JSON.toJSONString(u));
+                break;
+            case "b":
+                rabbit.convertAndSend("Fanout1","", JSON.toJSONString(u));
+                break;
+            case "t":
+                rabbit.convertAndSend("Topic1","key.6.ab.c", JSON.toJSONString(u));
+                break;
+            default:
+                System.out.println("Do nothing");
+                break;
+        }
     }
 }
